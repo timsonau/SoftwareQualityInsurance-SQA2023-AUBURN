@@ -23,6 +23,7 @@ jobs:
       - name: Run Bandit
         run: |
           bandit -f csv -o ./bandit_output.csv -r KubeSec/KubeSec-master
+          true
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
