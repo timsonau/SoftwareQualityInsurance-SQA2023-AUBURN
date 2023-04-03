@@ -21,4 +21,10 @@
 #           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 #       - name: Run Bandit
 #         run: |
-#           bandit -r KubeSec/KubeSec-master
+#           bandit -f csv -o ./bandit_output.csv -r KubeSec/KubeSec-master
+#           true
+#       - name: Commit changes
+#         uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           commit_message: Adding bandit output file
+#           branch: ${{ github.head_ref }}
