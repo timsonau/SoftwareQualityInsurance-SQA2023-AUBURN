@@ -9,3 +9,5 @@
 #### Brandon Clements : bgc0003@auburn.edu
 
 #### Ethan Wilkes : rew0041@auburn.edu
+
+#### Tim Son: hzs0093@auburn.edu
