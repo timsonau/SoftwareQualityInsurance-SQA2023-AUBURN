@@ -5,8 +5,11 @@ Construct taint graphs based on weakness types
 '''
 import constants
 import parser 
-import os 
+import os
+import logger 
 from itertools import combinations
+
+logger_obj = logger.getLogObj('graphtaint logger')
 
 def getYAMLFiles(path_to_dir):
     valid_  = [] 
@@ -18,7 +21,8 @@ def getYAMLFiles(path_to_dir):
                valid_.append(full_p_file)
     return valid_ 
 
-def constructHelmString(hiera_tuple): 
+def constructHelmString(hiera_tuple):
+    logger_obj.info(f"Constructing Helm String on {hiera_tuple}")
     str2ret  = constants.YAML_SKIPPING_TEXT 
     upper_key, key, _ = hiera_tuple 
     if ( upper_key != key  ):
@@ -26,6 +30,7 @@ def constructHelmString(hiera_tuple):
     return str2ret 
 
 def getHelmTemplateContent( templ_dir ):
+    logger_obj.info(f"Retrieving Helm Template Content from {templ_dir}")
     template_content_dict = {}
     template_yaml_files =  getYAMLFiles( templ_dir )
     for template_yaml_file in template_yaml_files:

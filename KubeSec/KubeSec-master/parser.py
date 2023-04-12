@@ -6,13 +6,16 @@ Parser to file YAML files
 
 import yaml
 import constants 
+import logger
 
+logger_obj = logger.getLogObj('parser logger')
 def checkIfWeirdYAML(yaml_script):
     '''
     to filter invalid YAMLs such as ./github/workflows/ 
     '''
     val = False
     if ( any(x_ in yaml_script for x_ in constants.WEIRD_PATHS  ) ):
+        logger_obj.warning("Invalid YAML detected")
         val = True 
     return val 
 
