@@ -13,6 +13,9 @@ def fuzzFunctions() :
     try : scanner.getYAMLFiles(12)
     except Exception as e: ListOfExceptions.append(str(e))
 
+    try : scanner.getYAMLFiles(12)
+    except Exception as e: ListOfExceptions.append(str(e))
+
     try : graphtaint.mineNetPolGraph(None, None, None, None)
     except Exception as e: ListOfExceptions.append(str(e))
 
