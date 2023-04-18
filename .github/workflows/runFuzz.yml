@@ -3,7 +3,7 @@ name: run fuzz.py
 on:
   push:
     branches:
-    - jacegrant-patch-1
+    - main
 
 jobs:
   build:
