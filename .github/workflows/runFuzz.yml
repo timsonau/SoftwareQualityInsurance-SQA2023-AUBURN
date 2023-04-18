@@ -18,6 +18,7 @@ jobs:
          run: |
            python -m pip install --upgrade pip
            pip install bandit
+           pip install pandas
            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
        - name: execute py script # run fuzz.py
          run: python KubeSec/KubeSec-master/fuzz.py
