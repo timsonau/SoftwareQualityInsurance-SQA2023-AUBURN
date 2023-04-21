@@ -40,6 +40,7 @@ def getHelmTemplateContent( templ_dir ):
 
 
 def getMatchingTemplates(path2script, hierarchy_ls):
+    logger_obj.info(f"Getting path script {path2script}")
     templ_list = [] 
     template_content_dict, helm_string_list = {}, []
     templateDirOfHelmValues = os.path.dirname( path2script )  + constants.TEMPLATES_DIR_KW 
@@ -111,6 +112,7 @@ def mineSecretGraph( path2script, yaml_dict , secret_dict ):
 
 
 def getSHFiles(path_to_dir):
+    logger_obj.info(f"getting SH files from {path_to_dir}")
     valid_  = [] 
     for root_, _, files_ in os.walk( path_to_dir ):
        for file_ in files_:
@@ -122,12 +124,14 @@ def getSHFiles(path_to_dir):
 
 
 def readBashAsStr( path_sh_script ):
+    logger_obj.info(f"Reading bash from {path_sh_script}")
     _as_str = constants.YAML_SKIPPING_TEXT
     with open( path_sh_script , constants.FILE_READ_FLAG) as file_:
         _as_str = file_.read()
     return _as_str
 
 def getTaintsFromConfigMaps( script_path ):
+    logger_obj.info(f"getting taints from {script_path}")
     list2Return = [] 
     config_map_dir  = os.path.dirname( script_path )  + constants.SLASH_SYMBOL    
     script_name     = script_path.replace( config_map_dir, constants.YAML_SKIPPING_TEXT )
