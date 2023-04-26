@@ -23,6 +23,7 @@ def getYAMLFiles(path_to_dir):
 
 def constructHelmString(hiera_tuple):
     logger_obj.info(f"Constructing Helm String on {hiera_tuple}")
+
     str2ret  = constants.YAML_SKIPPING_TEXT 
     upper_key, key, _ = hiera_tuple 
     if ( upper_key != key  ):

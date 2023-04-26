@@ -9,7 +9,9 @@ import graphtaint
 import os 
 import pandas as pd 
 import numpy as np 
+import logger
 
+logger_obj = logger.getLogObj('scanner logger')
 def getYAMLFiles(path_to_dir):
     valid_  = [] 
     for root_, dirs, files_ in os.walk( path_to_dir ):
@@ -20,7 +22,8 @@ def getYAMLFiles(path_to_dir):
                valid_.append(full_p_file)
     return valid_ 
 
-def isValidUserName(uName): 
+def isValidUserName(uName):
+    
     valid = True
     if (isinstance( uName , str)  ): 
         if( any(z_ in uName for z_ in constants.FORBIDDEN_USER_NAMES )   ): 
@@ -74,7 +77,8 @@ def scanUserName(k_ , val_lis ):
         k_ = k_.lower()    
     # print('INSPECTING:', k_) 
     if( isValidUserName( k_ )   and any(x_ in k_ for x_ in constants.SECRET_USER_LIST )  ):
-        # print( val_lis ) 
+        # print( val_lis )
+        logger_obj.info(f"Scanning username: {k_}")
         for val_ in val_lis:
             if (checkIfValidSecret( val_ ) ): 
                 # print(val_) 

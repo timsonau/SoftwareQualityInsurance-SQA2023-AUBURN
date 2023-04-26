@@ -89,8 +89,10 @@ def checkIfValidK8SYaml(path2yaml):
     key_lis      = list( getValuesRecursively  ( yaml_dict ) )
     if ( any(x_ in key_lis for x_ in constants.K8S_FORBIDDEN_KW_LIST ) ): 
         val2ret = False 
+        logger_obj.warning(f"YAML in : {path2yaml} invalid k82 YAML")
     else: 
         if ( constants.API_V_KEYNAME in temp_ ) and (constants.KIND_KEY_NAME in temp_):
+            logger_obj.info(f"YAML in : {path2yaml} valid k82 YAML")
             val2ret = True 
     return val2ret
 
@@ -121,6 +123,7 @@ def checkIfValidHelm(path_script):
 
 
 def readYAMLAsStr( path_script ):
+    logger_obj.info(f"Reading YAML file in: {path_script}")
     yaml_as_str = constants.YAML_SKIPPING_TEXT
     with open( path_script , constants.FILE_READ_FLAG) as file_:
         yaml_as_str = file_.read()
