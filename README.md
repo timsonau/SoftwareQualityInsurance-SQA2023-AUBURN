@@ -24,6 +24,8 @@ Once I was satisfied with the script, I saved the "pre-commit" file and exited t
 
 Now, every time I run "git commit", the "pre-commit" hook automatically runs the Bandit analysis tool and saves the output to a file. If Bandit finds any security issues, these security vulnerabilities can be found in the updated "bandit_output.csv" file.
 
+The hook I created can be found in the pre-commit-hooks folder, and the screenshots I took of the hook running can be found in the screenshots folder.
+
 #### II) Forensics
 For this portion of the project we created a logger.py file in which we create and return a logger object. The logger object logs the timestamp, level, name, and message specified when using the log. We then imported that into parser.py,graphtaint.py, and scanner.py created logger objects within each of those files, and made calls throughout the files to add logs to the logger object in various functions throughout the files. We have logs within parser.py in checkIfWeirdYAML() (line 18) to log warnings for invalid YAML inputs as well as checkIfValidK8SYaml() in which we log the path of the YAML file if the file is a valid (line 92) /invalid k82 YAML (line 95). In graphtaint.py we have logging in constructHelmString() (line 25) , getHelmTemplateContent() (line 34), getMatchingTemplates() (line 44), getSHFiles() (line 116), readBashAsStr() (line 128), and getTaintsFromConfigMaps() (line 135). All of the logging in graphtaint.py is logging the inputs of the methods so that we can see where and how the data changes throughout the python file. In scanner.py we decided to log all the usernames scanned to keep a list of all users. All the logging is outputted in the Kube-Sec-Activity.log. 
 
